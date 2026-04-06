@@ -1,0 +1,10 @@
+{"prefix":"dr","path":"../gas-city"}
+{"prefix":"co","path":"../CodeScaleBench"}
+{"prefix":"en","path":"../EnterpriseBench"}
+{"prefix":"cp","path":"../codeprobe"}
+{"prefix":"ad","path":"../agent-diagnostics"}
+{"prefix":"se","path":"../scix_experiments"}
+{"prefix":"ba","path":"../background-agents"}
+{"prefix":"geo","path":"../GEO"}
+{"prefix":"ma","path":"."}
+{"prefix":"so","path":"../sourcegraph"}
