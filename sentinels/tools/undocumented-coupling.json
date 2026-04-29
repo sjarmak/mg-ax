@@ -1,0 +1,26 @@
+{
+  "tools": [
+    {
+      "name": "set_search_scope",
+      "description": "Set the active repository scope for subsequent searches. Required: repo.",
+      "inputSchema": {
+        "type": "object",
+        "required": ["repo"],
+        "properties": {
+          "repo": {"type": "string"}
+        }
+      }
+    },
+    {
+      "name": "search_active_scope",
+      "description": "Search for code matching `pattern` in the currently active repository. Required: pattern.",
+      "inputSchema": {
+        "type": "object",
+        "required": ["pattern"],
+        "properties": {
+          "pattern": {"type": "string"}
+        }
+      }
+    }
+  ]
+}

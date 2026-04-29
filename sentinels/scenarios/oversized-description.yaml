@@ -1,0 +1,11 @@
+id: sentinel-oversized-description
+manifest: ../tools/oversized-description.json
+category: oversized-description
+ground_truth: |
+  Single tool with a ~1.6 KB description that buries the contract under
+  marketing prose, edge-case caveats, and cross-tool routing advice. The
+  required-parameter naming check (AX0002) PASSES because the names appear
+  somewhere in the prose, but agents struggle to extract the contract. The
+  lint engine does not yet have a rule for this; AX0204 is reserved.
+modes_supported: [direct, noise]
+pending_rule: AX0204

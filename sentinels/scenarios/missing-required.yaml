@@ -1,0 +1,9 @@
+id: sentinel-missing-required
+manifest: ../tools/missing-required.json
+category: missing-required
+ground_truth: |
+  Single tool whose inputSchema declares required: [pattern, repo] but the
+  description ("Search for code in a repository.") names neither. AX0002
+  MUST fire (deterministic auto-fixable static rule). AX0001 is the semantic
+  companion claim and lives in the trace tier; it is listed in pending_rules.
+modes_supported: [direct]

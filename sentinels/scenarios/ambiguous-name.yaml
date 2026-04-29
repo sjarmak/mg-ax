@@ -1,0 +1,8 @@
+id: sentinel-ambiguous-name
+manifest: ../tools/ambiguous-name.json
+category: ambiguous-name
+ground_truth: |
+  Two tools (`search_code`, `find_code`) with byte-identical descriptions.
+  Sibling Jaccard similarity = 1.0 — well above AX0007's threshold. AX0007
+  MUST fire on the pair. No auto-fix (disambiguation requires authoring).
+modes_supported: [direct, distractor]

@@ -1,0 +1,22 @@
+# Code owners enforce the bus-factor-2 rule from
+# docs/sentinels/rebless-procedure.md. The R17 sentinel pack is the
+# release-gate oracle; mutations require named-approver review.
+#
+# bus-factor-2: each protected path lists two code-owner handles. The
+# second slot uses the placeholder team @mcp-ax-bus-factor-2-tbd, which
+# is intentionally unresolved so GitHub surfaces a warning until a real
+# second human is named via GATE-3 (bead mcp-ax-ph3.5: "Named owner +
+# go/no-go date for 7 open questions"). The placeholder MUST be replaced
+# before the v3.1 MVP ships. Do NOT delete it — its purpose is to keep
+# the gap visible in the GitHub Code Owners UI.
+
+# R17 sentinel suite — primary release-gate oracle.
+sentinels/                                @sjarmak @mcp-ax-bus-factor-2-tbd
+sentinels/expected.json                   @sjarmak @mcp-ax-bus-factor-2-tbd
+sentinels/tools/                          @sjarmak @mcp-ax-bus-factor-2-tbd
+.github/workflows/sentinel-gate.yml       @sjarmak @mcp-ax-bus-factor-2-tbd
+docs/sentinels/                           @sjarmak @mcp-ax-bus-factor-2-tbd
+
+# Schemas + rule registry — every other tier is downstream.
+harness/schemas/                          @sjarmak @mcp-ax-bus-factor-2-tbd
+harness/rules/                            @sjarmak @mcp-ax-bus-factor-2-tbd

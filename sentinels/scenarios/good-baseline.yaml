@@ -1,0 +1,8 @@
+id: sentinel-good-baseline
+manifest: ../tools/good-baseline.json
+category: good-baseline
+ground_truth: |
+  Well-described single-tool manifest. Every required parameter is named in
+  the description; no sibling-confusion possible (only one tool); description
+  is under 1 KB. The lint engine MUST emit zero findings.
+modes_supported: [direct]

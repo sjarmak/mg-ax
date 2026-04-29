@@ -1,0 +1,22 @@
+id: AX0204
+title: Tool description is oversized — contract buried in prose
+rationale: |
+  Descriptions over ~600 tokens force the agent to extract the function
+  contract from a sea of marketing copy, edge-case caveats, and cross-tool
+  routing advice. The required-parameter naming check (AX0002) often passes
+  because the names appear *somewhere*, but agents truncate the description
+  in their working memory and miss the contract. Manifests as elevated
+  `retry_count` and `tool_call_count` even when AX0002 is clean.
+citation:
+  - "Feb-2026 smell rubric §3.4: 'description signal-to-noise ratio'."
+  - "MCP-Bench (2026): description length is monotonically inversely correlated
+    with first_call_schema_valid above 600 tokens."
+auto_fix: false
+severity_default: medium
+evidence_template: |
+  Tool: {tool_name}
+  Description length: {description_chars} chars / approximately {token_estimate}
+  tokens. Contract-bearing sentences ({contract_sentences}) are diluted by
+  {context_sentences} sentences of routing/marketing/caveat prose.
+one_line_summary: Description is too long; contract is buried in prose.
+rule_version_hash: 7e8f9a0b

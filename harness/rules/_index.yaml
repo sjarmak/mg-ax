@@ -8,6 +8,10 @@ rules:
     file: AX0142.yaml
   - id: AX0143
     file: AX0143.yaml
+  - id: AX0204
+    file: AX0204.yaml
+  - id: AX0301
+    file: AX0301.yaml
 
 claim_classes:
   - id: AX-CC-fix-correct

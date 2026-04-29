@@ -1,0 +1,28 @@
+{
+  "tools": [
+    {
+      "name": "search_code",
+      "description": "Search for code matching a regex `pattern` in repository `repo`. Returns up to 50 matches with file path and line number.",
+      "inputSchema": {
+        "type": "object",
+        "required": ["pattern", "repo"],
+        "properties": {
+          "pattern": {"type": "string"},
+          "repo": {"type": "string"}
+        }
+      }
+    },
+    {
+      "name": "find_code",
+      "description": "Search for code matching a regex `pattern` in repository `repo`. Returns up to 50 matches with file path and line number.",
+      "inputSchema": {
+        "type": "object",
+        "required": ["pattern", "repo"],
+        "properties": {
+          "pattern": {"type": "string"},
+          "repo": {"type": "string"}
+        }
+      }
+    }
+  ]
+}

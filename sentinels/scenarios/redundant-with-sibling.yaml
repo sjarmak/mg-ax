@@ -1,0 +1,9 @@
+id: sentinel-redundant-with-sibling
+manifest: ../tools/redundant-with-sibling.json
+category: redundant-with-sibling
+ground_truth: |
+  Three near-duplicate file-listing tools (`list_files`, `enumerate_files`,
+  `files_in_repo`) — every pair is Jaccard-identical. AX0007 MUST fire across
+  the manifest. Distinguishes from ambiguous-name by N>2 (catches O(N^2)
+  pair explosion in the lint engine if it has bounds bugs).
+modes_supported: [direct, distractor]

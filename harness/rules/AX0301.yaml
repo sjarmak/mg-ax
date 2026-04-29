@@ -1,0 +1,20 @@
+id: AX0301
+title: Cross-tool state coupling is undocumented
+rationale: |
+  When tool A mutates server-side state that tool B reads, but neither
+  description names the dependency, agents will call them in the wrong order
+  and observe empty/incorrect results. Manifests as `empty_result_handled:
+  false` and elevated `anti_pattern_redirects` in trace metrics for
+  scenarios that exercise both tools.
+citation:
+  - "AgentNoiseBench (2026): undocumented-coupling is the #3 cause of
+    silent-incorrect-result outcomes in multi-tool servers."
+  - "Feb-2026 smell rubric §4.1: 'implicit cross-tool state'."
+auto_fix: false
+severity_default: high
+evidence_template: |
+  Tools `{tool_a}` and `{tool_b}` participate in a state dependency that is
+  not documented in either description. Observed `{symptom}` across
+  `{scenario_count}` scenarios where both tools are exercised.
+one_line_summary: Cross-tool state coupling is not documented in either tool's description.
+rule_version_hash: 1c2d3e4f

@@ -1,0 +1,38 @@
+{
+  "schema_version": "1",
+  "description": "Ground-truth bucket assignments for each sentinel manifest. expected_findings is the set of AX#### IDs the static lint engine MUST fire today; pending_rules is the set the sentinel exists to catch once the lint engine implements them. variance_target is the maximum allowed across N=5 reruns (R17 acceptance: < 0.5).",
+  "variance_target_per_metric": 0.5,
+  "rerun_count": 5,
+  "sentinels": {
+    "good-baseline": {
+      "category": "good-baseline",
+      "expected_findings": [],
+      "pending_rules": []
+    },
+    "missing-required": {
+      "category": "missing-required",
+      "expected_findings": ["AX0002"],
+      "pending_rules": ["AX0001"]
+    },
+    "ambiguous-name": {
+      "category": "ambiguous-name",
+      "expected_findings": ["AX0007"],
+      "pending_rules": []
+    },
+    "redundant-with-sibling": {
+      "category": "redundant-with-sibling",
+      "expected_findings": ["AX0007"],
+      "pending_rules": []
+    },
+    "oversized-description": {
+      "category": "oversized-description",
+      "expected_findings": [],
+      "pending_rules": ["AX0204"]
+    },
+    "undocumented-coupling": {
+      "category": "undocumented-coupling",
+      "expected_findings": [],
+      "pending_rules": ["AX0301"]
+    }
+  }
+}

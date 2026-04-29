@@ -1,0 +1,11 @@
+id: sentinel-undocumented-coupling
+manifest: ../tools/undocumented-coupling.json
+category: undocumented-coupling
+ground_truth: |
+  Two tools where `set_search_scope` mutates server-side state that
+  `search_active_scope` reads, but neither description references the other.
+  Agents will call `search_active_scope` before `set_search_scope` and get
+  empty results. The lint engine does not yet have a rule for this;
+  AX0301 is reserved.
+modes_supported: [direct, distractor]
+pending_rule: AX0301

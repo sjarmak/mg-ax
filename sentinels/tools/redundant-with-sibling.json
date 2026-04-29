@@ -1,0 +1,40 @@
+{
+  "tools": [
+    {
+      "name": "list_files",
+      "description": "List every file in repository `repo` matching glob `pattern`. Required: repo, pattern. Returns paths sorted lexicographically.",
+      "inputSchema": {
+        "type": "object",
+        "required": ["repo", "pattern"],
+        "properties": {
+          "repo": {"type": "string"},
+          "pattern": {"type": "string"}
+        }
+      }
+    },
+    {
+      "name": "enumerate_files",
+      "description": "List every file in repository `repo` matching glob `pattern`. Required: repo, pattern. Returns paths sorted lexicographically.",
+      "inputSchema": {
+        "type": "object",
+        "required": ["repo", "pattern"],
+        "properties": {
+          "repo": {"type": "string"},
+          "pattern": {"type": "string"}
+        }
+      }
+    },
+    {
+      "name": "files_in_repo",
+      "description": "List every file in repository `repo` matching glob `pattern`. Required: repo, pattern. Returns paths sorted lexicographically.",
+      "inputSchema": {
+        "type": "object",
+        "required": ["repo", "pattern"],
+        "properties": {
+          "repo": {"type": "string"},
+          "pattern": {"type": "string"}
+        }
+      }
+    }
+  ]
+}

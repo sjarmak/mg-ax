@@ -1,0 +1,19 @@
+{
+  "tools": [
+    {
+      "name": "search_code",
+      "description": "This tool searches for code matching a `pattern` in repository `repo`. It is one of several search tools that this MCP server exposes. The server itself is part of a larger platform that aggregates code-intelligence signals across many sources. The pattern may be a literal string or a POSIX extended regular expression — the implementation auto-detects which one was intended by attempting to parse the input as a regex first and falling back to literal matching if the regex parse fails. Repositories are identified by `owner/name` form. The owner can be a user account or an organisation. Repositories may have multiple branches; this tool searches the default branch only. To search a specific branch, use `search_code_at_ref`. The result envelope contains a `matches` array, where each match has a `path`, `line`, `column`, `preceding_context`, `match_text`, and `following_context`. Context windows are 80 characters by default but configurable up to 4096 via the `context_chars` parameter. Matches are sorted by relevance, where relevance is a function of recency, citation count from other indexed repositories, and a small term-frequency bonus. The `limit` parameter caps the number of returned matches and defaults to 50; the maximum is 500. The tool can return partial results if the underlying index is being updated; check `result.partial` to detect this. Rate limits apply: 60 calls per minute per API key, with bursts up to 100. On 429 responses, retry after the `Retry-After` header. The tool surfaces a number of failure modes via structured error codes: `INDEX_UNAVAILABLE`, `REPO_NOT_FOUND`, `PERMISSION_DENIED`, `INVALID_PATTERN`, `RATE_LIMITED`. There is also an experimental `regex_engine` parameter accepting `re2` or `pcre`, but PCRE support is gated behind a feature flag and may not be available in all deployments. For semantic search (where you want to find code by meaning rather than literal pattern), prefer `nls_search`. For commit-message search, use `commit_search`. Required: pattern, repo.",
+      "inputSchema": {
+        "type": "object",
+        "required": ["pattern", "repo"],
+        "properties": {
+          "pattern": {"type": "string"},
+          "repo": {"type": "string"},
+          "limit": {"type": "integer", "default": 50},
+          "context_chars": {"type": "integer", "default": 80},
+          "regex_engine": {"type": "string", "enum": ["re2", "pcre"]}
+        }
+      }
+    }
+  ]
+}

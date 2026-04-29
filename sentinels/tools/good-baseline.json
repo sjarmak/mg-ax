@@ -1,0 +1,27 @@
+{
+  "tools": [
+    {
+      "name": "search_code",
+      "description": "Search for code matching a regex `pattern` in repository `repo`. Returns up to 50 matches with file path and line number. Required: pattern, repo.",
+      "inputSchema": {
+        "type": "object",
+        "required": ["pattern", "repo"],
+        "properties": {
+          "pattern": {
+            "type": "string",
+            "description": "POSIX extended regex applied to file contents."
+          },
+          "repo": {
+            "type": "string",
+            "description": "Repository identifier in `owner/name` form."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum matches returned. Defaults to 50.",
+            "default": 50
+          }
+        }
+      }
+    }
+  ]
+}

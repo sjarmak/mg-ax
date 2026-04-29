@@ -1,0 +1,49 @@
+name: sentinel-gate
+
+# R17 acceptance: sentinel failures block release. This workflow runs the
+# R17 sentinel pack on every push to main, every pull request, and every
+# release tag. A failure here marks the PR/commit as red and blocks merges
+# via the branch protection rule documented in
+# docs/sentinels/rebless-procedure.md.
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sentinel-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install harness dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install jsonschema PyYAML referencing
+
+      - name: Run schema + rule-registry linter
+        run: make schema-lint
+
+      - name: Run R17 sentinel-check (5 reruns, variance < 0.5)
+        run: make sentinel-check
+
+      - name: Surface pending rules (advisory, non-blocking)
+        if: always()
+        run: |
+          echo "Sentinel pending rules represent known future work; they"
+          echo "do not block the gate but are surfaced here for triage."
+          python3 tools/sentinel_check.py 2>&1 | grep -E '^\s*pending rules' || true
