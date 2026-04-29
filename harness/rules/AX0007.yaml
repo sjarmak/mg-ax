@@ -1,0 +1,19 @@
+id: AX0007
+title: Sibling tool descriptions are confusable
+rationale: |
+  When two tools on the same MCP server have descriptions that overlap in
+  intent ("search code" vs. "search code semantically"), agents pick the wrong
+  one and route calls into a tool whose schema does not accept the inferred
+  arguments. Manifests as `anti_pattern_redirects > 0` and `fallback_tool_count`
+  spikes in the trace.
+citation:
+  - "MCPAgentBench (2026): pairwise embedding similarity > 0.82 on description
+    text predicts >30% redirect rate."
+auto_fix: false
+severity_default: medium
+evidence_template: |
+  Tools `{tool_a}` and `{tool_b}` on server `{server}` have description
+  similarity {similarity}. Observed {redirect_count} redirects across
+  {scenario_count} scenarios.
+one_line_summary: Sibling tool descriptions are too similar — agents misroute.
+rule_version_hash: 5e6f7a8b

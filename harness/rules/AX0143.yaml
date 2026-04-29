@@ -1,0 +1,19 @@
+id: AX0143
+title: Tool result lacks pagination cursor when truncation is possible
+rationale: |
+  Tools that can truncate results without exposing a cursor force agents to
+  guess at completeness. Agents either polling-retry, falling back to a
+  different tool, or returning incomplete answers. Manifests as
+  `polling_retry_count > 0` and `wall_clock_ms` outliers on
+  large-result-set scenarios.
+citation:
+  - "MCP-Bench (2026): pagination-by-truncation is the #2 cited cause of
+    polling-retry storms in large-corpus search tools."
+auto_fix: false
+severity_default: medium
+evidence_template: |
+  Tool `{tool_name}` returned {result_count} items with `truncated: true`
+  but no `next_cursor`. Agent issued {polling_retry_count} polling retries
+  before giving up.
+one_line_summary: Truncated results have no cursor — agents poll-retry blindly.
+rule_version_hash: 3a4b5c6d

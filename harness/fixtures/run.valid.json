@@ -1,0 +1,45 @@
+{
+  "schema_version": "1",
+  "run_id": "run-2026-04-29-7af3",
+  "started_at": "2026-04-29T14:42:00Z",
+  "completed_at": "2026-04-29T14:42:54Z",
+  "harness_git_sha": "deadbeef1234567",
+  "tool_manifest_hash": "0f1e2d3c4b5a6978",
+  "mcp_server": {
+    "endpoint": "https://mcp.sourcegraph.test/v1",
+    "version": "2026.04.0",
+    "build_sha": "1234567"
+  },
+  "tested_repo_commit_sha": "abcdef1234567",
+  "rng_seed": 42,
+  "total_cost_usd": 0.053,
+  "budget_usd_cap": 0.20,
+  "budget_usd_used": 0.053,
+  "replay": true,
+  "orchestrator_capability_profile": {
+    "family": "sonnet",
+    "tier": "main",
+    "context_window": 200000,
+    "tool_use": true,
+    "json_mode": true
+  },
+  "test_capability_profile": {
+    "family": "haiku",
+    "tier": "lightweight",
+    "context_window": 200000,
+    "tool_use": true,
+    "json_mode": true
+  },
+  "judge_capability_profile": {
+    "family": "sonnet",
+    "tier": "main",
+    "context_window": 200000,
+    "tool_use": false,
+    "json_mode": true
+  },
+  "prompt_template_shas": {
+    "test_agent_v1": "0123456789abcdef",
+    "judge_v1": "fedcba9876543210"
+  },
+  "baseline_missing": false
+}

@@ -1,0 +1,19 @@
+id: AX0142
+title: Empty-result response is a hard error instead of a typed empty
+rationale: |
+  When a query legitimately matches zero results, returning an HTTP error or a
+  protocol-level failure forces the agent into retry/fallback loops. The
+  semantically correct response is a typed empty result with the same envelope
+  the agent already knows how to consume. Manifests as `empty_result_handled:
+  false` and elevated `retry_count` for empty-result scenarios.
+citation:
+  - "AgentNoiseBench (2026): empty-result-as-error inflates median tool-call
+    count by 3.4x on noise-mode scenarios."
+auto_fix: true
+severity_default: high
+evidence_template: |
+  Scenario `{scenario_id}` legitimately returned zero matches. Server replied
+  with `{error_kind}` instead of `{ok_envelope}`. Agent retried
+  {retry_count} times before abandoning.
+one_line_summary: Empty result is signalled as an error instead of a typed empty value.
+rule_version_hash: 9c0d1e2f

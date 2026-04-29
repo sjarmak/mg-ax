@@ -1,0 +1,43 @@
+{
+  "schema_version": "1",
+  "run_id": "run-2026-04-29-7af3",
+  "findings": [
+    {
+      "id": "AX0001",
+      "severity": "high",
+      "evidence_refs": ["traces/sc01.jsonl#L42"],
+      "current_text": "Search for code in a repository.",
+      "proposed_text": "Search for code matching `pattern` in repository `repo`.",
+      "auto_fixable": false,
+      "source": "static",
+      "claim_class": "AX-CC-fix-correct",
+      "scenario_ids": ["sc01"],
+      "oracle_backed": true,
+      "rule_version_hash": "a1b2c3d4"
+    }
+  ],
+  "patches": [
+    {
+      "finding_id": "AX0001",
+      "patch_path": "findings/AX0001.patch",
+      "rule_version_hash": "a1b2c3d4"
+    }
+  ],
+  "regression_delta": [
+    {
+      "rule_id": "AX0142",
+      "rule_version_hash": "9c0d1e2f",
+      "direction": "regressed",
+      "scenarios_affected": 3,
+      "one_line_summary": "Empty result is signalled as an error instead of a typed empty value."
+    },
+    {
+      "rule_id": "AX0007",
+      "rule_version_hash": "5e6f7a8b",
+      "direction": "fixed",
+      "scenarios_affected": 2,
+      "one_line_summary": "Sibling tool descriptions are too similar — agents misroute."
+    }
+  ],
+  "baseline_missing": false
+}

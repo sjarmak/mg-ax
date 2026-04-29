@@ -7,3 +7,11 @@
 .dolt/
 *.db
 .beads-credential-key
+
+# prd-build orchestration artifacts
+.prd-build/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/

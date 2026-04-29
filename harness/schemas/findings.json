@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mcp-ax/schemas/findings.json",
+  "title": "findings.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "findings"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1"
+    },
+    "findings": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/finding" }
+    }
+  },
+  "definitions": {
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "severity",
+        "evidence_refs",
+        "current_text",
+        "proposed_text",
+        "auto_fixable",
+        "source",
+        "claim_class",
+        "scenario_ids",
+        "oracle_backed"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^AX[0-9]{4}$"
+        },
+        "rule_version_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{8,64}$"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["critical", "high", "medium", "low", "info"]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "current_text": { "type": "string" },
+        "proposed_text": { "type": "string" },
+        "auto_fixable": { "type": "boolean" },
+        "source": {
+          "type": "string",
+          "enum": ["static", "trace", "claim", "proxy-diff", "reference-diff"]
+        },
+        "claim_class": {
+          "type": "string",
+          "pattern": "^AX-CC-[a-z][a-z0-9-]*$"
+        },
+        "scenario_ids": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "oracle_backed": { "type": "boolean" },
+        "rule_id": {
+          "type": "string",
+          "pattern": "^AX[0-9]{4}$"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mcp-ax/schemas/run.json",
+  "title": "run.json — reproducibility metadata (R13)",
+  "description": "Models are referenced by capability_profile (P1 mitigation), not model_id, so model deprecation/rename does not invalidate the baseline corpus.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "started_at",
+    "completed_at",
+    "harness_git_sha",
+    "tool_manifest_hash",
+    "mcp_server",
+    "tested_repo_commit_sha",
+    "rng_seed",
+    "total_cost_usd",
+    "budget_usd_cap",
+    "budget_usd_used",
+    "replay",
+    "orchestrator_capability_profile",
+    "test_capability_profile",
+    "judge_capability_profile",
+    "prompt_template_shas"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1" },
+    "run_id": { "type": "string", "minLength": 1 },
+    "started_at": { "type": "string", "format": "date-time" },
+    "completed_at": { "type": "string", "format": "date-time" },
+    "harness_git_sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{7,64}$"
+    },
+    "tool_manifest_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{8,64}$"
+    },
+    "mcp_server": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["endpoint", "version", "build_sha"],
+      "properties": {
+        "endpoint": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "build_sha": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{7,64}$"
+        }
+      }
+    },
+    "tested_repo_commit_sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{7,64}$"
+    },
+    "rng_seed": { "type": "integer" },
+    "total_cost_usd": { "type": "number", "minimum": 0 },
+    "budget_usd_cap": { "type": "number", "minimum": 0 },
+    "budget_usd_used": { "type": "number", "minimum": 0 },
+    "replay": { "type": "boolean" },
+    "orchestrator_capability_profile": { "$ref": "#/definitions/capability_profile" },
+    "test_capability_profile": { "$ref": "#/definitions/capability_profile" },
+    "judge_capability_profile": { "$ref": "#/definitions/capability_profile" },
+    "prompt_template_shas": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{8,64}$"
+      }
+    },
+    "baseline_missing": { "type": "boolean" }
+  },
+  "definitions": {
+    "capability_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["family", "tier", "context_window", "tool_use", "json_mode"],
+      "properties": {
+        "family": {
+          "type": "string",
+          "enum": ["opus", "sonnet", "haiku", "other"]
+        },
+        "tier": {
+          "type": "string",
+          "enum": ["lightweight", "main", "deep-reasoning"]
+        },
+        "context_window": { "type": "integer", "minimum": 1024 },
+        "tool_use": { "type": "boolean" },
+        "json_mode": { "type": "boolean" }
+      }
+    }
+  }
+}

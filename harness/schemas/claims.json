@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mcp-ax/schemas/claims.json",
+  "title": "claims.json — R6-lite claim schema (no aggregation in default surface)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "claims"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1"
+    },
+    "claims": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/claim" }
+    }
+  },
+  "definitions": {
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assertion",
+        "evidence_pointer",
+        "claim_class",
+        "source",
+        "scenario_ids",
+        "oracle_backed"
+      ],
+      "properties": {
+        "assertion": { "type": "string", "minLength": 1 },
+        "evidence_pointer": { "type": "string", "minLength": 1 },
+        "claim_class": {
+          "type": "string",
+          "pattern": "^AX-CC-[a-z][a-z0-9-]*$"
+        },
+        "source": {
+          "type": "string",
+          "enum": ["static", "trace", "claim", "proxy-diff", "reference-diff"]
+        },
+        "scenario_ids": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "oracle_backed": { "type": "boolean" },
+        "rule_id": {
+          "type": "string",
+          "pattern": "^AX[0-9]{4}$"
+        }
+      },
+      "not": {
+        "anyOf": [
+          { "required": ["score"] },
+          { "required": ["weight"] },
+          { "required": ["threshold"] },
+          { "required": ["coverage"] },
+          { "required": ["notes"] },
+          { "required": ["description"] }
+        ]
+      }
+    }
+  }
+}

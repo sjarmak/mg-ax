@@ -1,0 +1,20 @@
+version: 1
+rules:
+  - id: AX0001
+    file: AX0001.yaml
+  - id: AX0007
+    file: AX0007.yaml
+  - id: AX0142
+    file: AX0142.yaml
+  - id: AX0143
+    file: AX0143.yaml
+
+claim_classes:
+  - id: AX-CC-fix-correct
+    one_line_summary: A finding's proposed_text correctly resolves the issue.
+  - id: AX-CC-regression-introduced
+    one_line_summary: A previously-passing claim now fails on the new trace.
+  - id: AX-CC-side-effect
+    one_line_summary: Fix resolves the target rule but breaks an unrelated claim.
+  - id: AX-CC-coverage-drop
+    one_line_summary: Fix reduces the set of scenarios that exercise the tool.

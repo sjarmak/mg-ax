@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "scenarios": [
+    {
+      "scenario_id": "sc01",
+      "mode": "direct",
+      "first_call_schema_valid": true,
+      "tool_call_count": 2,
+      "retry_count": 0,
+      "fallback_tool_count": 0,
+      "polling_retry_count": 0,
+      "wall_clock_ms": 4218,
+      "tokens_in": 1840,
+      "tokens_out": 612,
+      "cost_usd": 0.012,
+      "empty_result_handled": true,
+      "anti_pattern_redirects": 0
+    },
+    {
+      "scenario_id": "sc07",
+      "mode": "direct",
+      "first_call_schema_valid": false,
+      "tool_call_count": 5,
+      "retry_count": 3,
+      "fallback_tool_count": 1,
+      "polling_retry_count": 0,
+      "wall_clock_ms": 17422,
+      "tokens_in": 4012,
+      "tokens_out": 988,
+      "cost_usd": 0.041,
+      "empty_result_handled": false,
+      "anti_pattern_redirects": 2
+    }
+  ]
+}

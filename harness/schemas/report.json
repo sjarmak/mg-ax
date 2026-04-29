@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mcp-ax/schemas/report.json",
+  "title": "report.json — default-surface output {findings, patches, regression_delta}",
+  "description": "regression_delta is REQUIRED (R2). No scalar overall score appears in default output. Aggregation lives in the --scorecard adapter.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "findings",
+    "patches",
+    "regression_delta"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1" },
+    "run_id": { "type": "string", "minLength": 1 },
+    "findings": {
+      "type": "array",
+      "items": { "$ref": "https://mcp-ax/schemas/findings.json#/definitions/finding" }
+    },
+    "patches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["finding_id", "patch_path"],
+        "properties": {
+          "finding_id": {
+            "type": "string",
+            "pattern": "^AX[0-9]{4}$"
+          },
+          "patch_path": { "type": "string", "minLength": 1 },
+          "rule_version_hash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{8,64}$"
+          }
+        }
+      }
+    },
+    "regression_delta": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/regression_entry" }
+    },
+    "baseline_missing": { "type": "boolean" }
+  },
+  "definitions": {
+    "regression_entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rule_id",
+        "rule_version_hash",
+        "direction",
+        "scenarios_affected",
+        "one_line_summary"
+      ],
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "pattern": "^AX[0-9]{4}$"
+        },
+        "rule_version_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{8,64}$"
+        },
+        "direction": {
+          "type": "string",
+          "enum": ["regressed", "fixed", "unchanged", "new"]
+        },
+        "scenarios_affected": { "type": "integer", "minimum": 0 },
+        "one_line_summary": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

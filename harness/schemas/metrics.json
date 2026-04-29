@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mcp-ax/schemas/metrics.json",
+  "title": "metrics.json — deterministic per-scenario behavioral metrics extracted from traces",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "scenarios"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1"
+    },
+    "scenarios": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/scenario_metrics" }
+    }
+  },
+  "definitions": {
+    "scenario_metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scenario_id",
+        "mode",
+        "first_call_schema_valid",
+        "tool_call_count",
+        "retry_count",
+        "fallback_tool_count",
+        "polling_retry_count",
+        "wall_clock_ms",
+        "tokens_in",
+        "tokens_out",
+        "cost_usd",
+        "empty_result_handled",
+        "anti_pattern_redirects"
+      ],
+      "properties": {
+        "scenario_id": { "type": "string", "minLength": 1 },
+        "mode": {
+          "type": "string",
+          "enum": ["direct", "fuzzy", "distractor", "noise"]
+        },
+        "first_call_schema_valid": { "type": "boolean" },
+        "tool_call_count": { "type": "integer", "minimum": 0 },
+        "retry_count": { "type": "integer", "minimum": 0 },
+        "fallback_tool_count": { "type": "integer", "minimum": 0 },
+        "polling_retry_count": { "type": "integer", "minimum": 0 },
+        "wall_clock_ms": { "type": "integer", "minimum": 0 },
+        "tokens_in": { "type": "integer", "minimum": 0 },
+        "tokens_out": { "type": "integer", "minimum": 0 },
+        "cost_usd": { "type": "number", "minimum": 0 },
+        "empty_result_handled": { "type": "boolean" },
+        "anti_pattern_redirects": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

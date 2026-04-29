@@ -1,0 +1,21 @@
+id: AX0001
+title: Tool description omits required parameter semantics
+rationale: |
+  Agents pick tools by reading the description and the parameter schema. When
+  the description does not state which parameters are required, what their
+  semantics are, or how they interact, agents either invent values or skip the
+  tool. Both failure modes show up as `first_call_schema_valid: false` and
+  elevated `retry_count` in the trace metrics.
+citation:
+  - "MCP-Atlas (2026): missing param semantics is the #1 cited cause of
+    schema-invalid first calls."
+  - "Feb-2026 smell rubric §2.1: 'description-parameter coupling'."
+auto_fix: false
+severity_default: high
+evidence_template: |
+  Tool: {tool_name}
+  Required parameter `{param_name}` is declared in the schema but absent from
+  the description. Observed effect: {first_call_schema_valid_rate} valid
+  first-calls across {scenario_count} scenarios.
+one_line_summary: Required parameter is in the schema but not the description.
+rule_version_hash: a1b2c3d4

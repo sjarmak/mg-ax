@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "claims": [
+    {
+      "assertion": "Tool deepsearch's first call has a schema-valid argument set when given a direct query.",
+      "evidence_pointer": "traces/sc01.jsonl#L1-L18",
+      "claim_class": "AX-CC-fix-correct",
+      "source": "trace",
+      "scenario_ids": ["sc01"],
+      "oracle_backed": true,
+      "rule_id": "AX0001"
+    },
+    {
+      "assertion": "When the corpus has no matches, deepsearch returns a typed empty rather than an error.",
+      "evidence_pointer": "traces/sc07.jsonl#L1-L9",
+      "claim_class": "AX-CC-regression-introduced",
+      "source": "trace",
+      "scenario_ids": ["sc07"],
+      "oracle_backed": true,
+      "rule_id": "AX0142"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": "1",
+  "findings": [
+    {
+      "id": "AX0001",
+      "severity": "high",
+      "evidence_refs": ["traces/sc01.jsonl#L42"],
+      "current_text": "Search for code in a repository.",
+      "proposed_text": "Search for code matching `pattern` in repository `repo`. Required: pattern, repo. Returns up to 50 matches with byte-offset spans.",
+      "auto_fixable": false,
+      "source": "static",
+      "claim_class": "AX-CC-fix-correct",
+      "scenario_ids": ["sc01", "sc02"],
+      "oracle_backed": true,
+      "rule_version_hash": "a1b2c3d4"
+    },
+    {
+      "id": "AX0142",
+      "severity": "high",
+      "evidence_refs": ["traces/sc07.jsonl#L11"],
+      "current_text": "Returns 404 on no matches.",
+      "proposed_text": "Returns {ok: true, results: []} when no matches found.",
+      "auto_fixable": true,
+      "source": "trace",
+      "claim_class": "AX-CC-regression-introduced",
+      "scenario_ids": ["sc07"],
+      "oracle_backed": true,
+      "rule_version_hash": "9c0d1e2f"
+    }
+  ]
+}

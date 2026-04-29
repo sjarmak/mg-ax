@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Thin wrapper that resolves the repo root and runs `python3 -m cli ${@}`.
+# Lets users invoke `mcp-ax explain AX0007` from anywhere inside the repo.
+set -euo pipefail
+
+# Resolve the directory of this script even if invoked through a symlink.
+SCRIPT_PATH="${BASH_SOURCE[0]}"
+while [ -L "$SCRIPT_PATH" ]; do
+  SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" && pwd)"
+  SCRIPT_PATH="$(readlink "$SCRIPT_PATH")"
+  [[ "$SCRIPT_PATH" != /* ]] && SCRIPT_PATH="$SCRIPT_DIR/$SCRIPT_PATH"
+done
+SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+cd "$REPO_ROOT"
+exec python3 -m cli "$@"

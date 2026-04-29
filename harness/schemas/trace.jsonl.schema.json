@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mcp-ax/schemas/trace.jsonl.schema.json",
+  "title": "trace.jsonl record — one JSON object per line",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ts",
+    "scenario_id",
+    "mode",
+    "kind",
+    "payload"
+  ],
+  "properties": {
+    "ts": {
+      "type": "number",
+      "minimum": 0
+    },
+    "scenario_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["direct", "fuzzy", "distractor", "noise"]
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "tool_call",
+        "tool_result",
+        "agent_message",
+        "system_message",
+        "schema_validation",
+        "retry",
+        "fallback",
+        "polling_retry",
+        "budget_event"
+      ]
+    },
+    "tool_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "payload": {
+      "type": "object"
+    },
+    "tokens_in": { "type": "integer", "minimum": 0 },
+    "tokens_out": { "type": "integer", "minimum": 0 },
+    "cost_usd": { "type": "number", "minimum": 0 },
+    "wall_clock_ms": { "type": "integer", "minimum": 0 }
+  }
+}
