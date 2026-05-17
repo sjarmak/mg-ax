@@ -1,0 +1,5 @@
+{"ts": 1746105720.123, "scenario_id": "sc01", "mode": "direct", "kind": "system_message", "payload": {"role": "system", "content": "test-agent system prompt v1"}}
+{"ts": 1746105720.200, "scenario_id": "sc01", "mode": "direct", "kind": "agent_message", "payload": {"role": "user", "content": "Find references to fooBar in repo X."}}
+{"ts": 1746105720.456, "scenario_id": "sc01", "mode": "direct", "kind": "tool_call", "tool_name": "deepsearch", "payload": {"args": {"query": "fooBar", "repo": "X"}, "schema_valid": true, "first_call": true}, "tokens_in": 120, "tokens_out": 24, "cost_usd": 0.001, "wall_clock_ms": 12}
+{"ts": 1746105722.789, "scenario_id": "sc01", "mode": "direct", "kind": "tool_result", "tool_name": "deepsearch", "payload": {"ok": true, "results": [{"file": "src/foo.ts", "line": 18}], "is_empty": false}, "wall_clock_ms": 2333}
+{"ts": 1746105722.900, "scenario_id": "sc01", "mode": "direct", "kind": "agent_message", "payload": {"role": "assistant", "content": "Found 1 reference at src/foo.ts:18."}, "tokens_in": 64, "tokens_out": 18, "cost_usd": 0.0008, "wall_clock_ms": 100}

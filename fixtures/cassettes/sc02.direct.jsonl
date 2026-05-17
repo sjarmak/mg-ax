@@ -1,0 +1,5 @@
+{"ts": 1746105730.000, "scenario_id": "sc02", "mode": "direct", "kind": "system_message", "payload": {"role": "system", "content": "test-agent system prompt v1"}}
+{"ts": 1746105730.100, "scenario_id": "sc02", "mode": "direct", "kind": "agent_message", "payload": {"role": "user", "content": "List repositories the agent can access."}}
+{"ts": 1746105730.300, "scenario_id": "sc02", "mode": "direct", "kind": "tool_call", "tool_name": "list_repos", "payload": {"args": {}, "schema_valid": true, "first_call": true}, "tokens_in": 95, "tokens_out": 8, "cost_usd": 0.0008, "wall_clock_ms": 9}
+{"ts": 1746105731.000, "scenario_id": "sc02", "mode": "direct", "kind": "tool_result", "tool_name": "list_repos", "payload": {"ok": true, "results": [{"name": "repo-a"}, {"name": "repo-b"}], "is_empty": false}, "wall_clock_ms": 700}
+{"ts": 1746105731.100, "scenario_id": "sc02", "mode": "direct", "kind": "agent_message", "payload": {"role": "assistant", "content": "You have access to 2 repositories: repo-a, repo-b."}, "tokens_in": 50, "tokens_out": 14, "cost_usd": 0.0006, "wall_clock_ms": 100}
